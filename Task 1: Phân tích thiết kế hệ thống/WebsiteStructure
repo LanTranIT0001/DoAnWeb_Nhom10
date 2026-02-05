@@ -1,21 +1,226 @@
-Pinterest Clone
+GUEST FLOW
 │
-├── Trang công khai (Guest)
-│   ├── Trang chủ (index.php)
-│   ├── Đăng nhập (login.php)
-│   ├── Đăng ký (register.php)
-│   ├── Tìm kiếm (search.php)
-│   └── Xem Pin chi tiết (pin-detail.php)
+├── 🌐 index.php (Trang chủ - Hiển thị Pins công khai)
+│   ├── Xem Pins
+│   ├── Xem danh mục
+│   └── Tìm kiếm
 │
-├── Trang người dùng (User)
-│   ├── Dashboard / Home Feed
-│   ├── Profile (profile.php)
-│   ├── Tạo Pin (create-pin.php)
-│   ├── Quản lý Boards (my-boards.php)
-│   ├── Board chi tiết (board-detail.php)
+├── 🌐 login.php (Đăng nhập)
+│   ├── Nhập email/password
+│   ├── "Quên mật khẩu?"
+│   └── → index.php (nếu thành công) → USER FLOW
 │
-└── Trang quản trị (Admin)
-    ├── Dashboard
-    ├── Quản lý người dùng
-    ├── Quản lý Pins
-    └── Thống kê
+├── 🌐 register.php (Đăng ký)
+│   ├── Nhập thông tin
+│   ├── Upload avatar
+│   ├── Gửi email xác thực
+│   └── → verify-email.php → login.php → USER FLOW
+│
+├── 🌐 forgot-password.php (Quên mật khẩu)
+│   ├── Nhập email
+│   ├── Gửi link reset
+│   └── → reset-password.php
+│
+├── 🌐 reset-password.php (Đặt lại mật khẩu)
+│   ├── Nhập mật khẩu mới
+│   └── → login.php
+│
+├── 🌐 search.php (Tìm kiếm)
+│   ├── Tìm theo từ khóa
+│   ├── Lọc theo danh mục
+│   └── Hiển thị kết quả
+│
+├── 🌐 explore.php (Khám phá)
+│   ├── Duyệt Pins theo danh mục
+│   └── Xem xu hướng
+│
+└── 🌐 pin.php?id=X (Xem chi tiết Pin)
+    ├── Xem hình ảnh
+    ├── Đọc mô tả
+    └── Xem thông tin người tạo
+
+
+USER FLOW (Sau khi đăng nhập thành công)
+│
+├── 🔒 index.php (Trang chủ - Home Feed)
+│   ├── Pins từ người đang theo dõi
+│   ├── Đề xuất Pins
+│   ├── Nút "Tạo Pin"
+│   └── Thanh tìm kiếm
+│
+├── 🔒👤 create-pin.php (Tạo Pin mới)
+│   ├── Upload hình ảnh
+│   ├── Nhập tiêu đề, mô tả
+│   ├── Chọn danh mục
+│   ├── Chọn Board để lưu
+│   └── → pin.php?id=X (Xem Pin vừa tạo)
+│
+├── 🔒👤 pin.php?id=X (Chi tiết Pin)
+│   ├── Hiển thị hình ảnh
+│   ├── Nút Like/Unlike
+│   ├── Form bình luận
+│   ├── Danh sách comment
+│   ├── Nút "Lưu vào Board"
+│   ├── Nút "Chia sẻ"
+│   ├── Nút "Báo cáo"
+│   └── Thông tin người tạo
+│
+├── 🔒👤 profile.php?user=X (Trang cá nhân)
+│   ├── Avatar, bio
+│   ├── Tabs:
+│   │   ├── Pins (Tất cả Pins)
+│   │   ├── Boards (Tất cả Boards)
+│   │   ├── Saved (Pins đã lưu)
+│   │   └── About (Thông tin)
+│   ├── Nút Follow/Unfollow
+│   └── → edit-profile.php (nếu là profile của mình)
+│
+├── 🔒👤 edit-profile.php (Chỉnh sửa profile)
+│   ├── Cập nhật avatar
+│   ├── Cập nhật bio
+│   ├── Cập nhật thông tin
+│   └── → profile.php
+│
+├── 🔒👤 settings.php (Cài đặt tài khoản)
+│   ├── Thông tin tài khoản
+│   ├── Bảo mật
+│   ├── Thông báo
+│   └── → change-password.php
+│
+├── 🔒👤 change-password.php (Đổi mật khẩu)
+│   ├── Nhập mật khẩu cũ
+│   ├── Nhập mật khẩu mới
+│   ├── Xác nhận
+│   └── → settings.php
+│
+├── 🔒👤 my-boards.php (Boards của tôi)
+│   ├── Danh sách Boards
+│   ├── Nút "Tạo Board mới"
+│   ├── Nút "Chỉnh sửa Board"
+│   ├── Nút "Xóa Board"
+│   └── → board.php?id=X
+│
+├── 🔒👤 create-board.php (Tạo Board mới)
+│   ├── Nhập tên, mô tả
+│   ├── Chọn chế độ (Công khai/Riêng tư)
+│   └── → my-boards.php
+│
+├── 🔒👤 board.php?id=X (Chi tiết Board)
+│   ├── Thông tin Board
+│   ├── Grid Pins trong Board
+│   ├── Nút "Thêm Pin"
+│   └── → edit-board.php (nếu là chủ sở hữu)
+│
+├── 🔒👤 edit-board.php?id=X (Chỉnh sửa Board)
+│   ├── Cập nhật thông tin
+│   ├── Thêm/Xóa Pins
+│   └── → board.php?id=X
+│
+├── 🔒👤 following.php (Đang theo dõi)
+│   ├── Danh sách người đang theo dõi
+│   ├── Nút Unfollow
+│   └── Tìm kiếm người dùng
+│
+├── 🔒👤 followers.php (Người theo dõi)
+│   └── Danh sách người theo dõi mình
+│
+├── 🔒👤 notifications.php (Thông báo)
+│   ├── Like Pin của bạn
+│   ├── Comment vào Pin của bạn
+│   ├── Follow bạn
+│   └── Đánh dấu đã đọc
+│
+├── 🔒👤 report.php?pin=X (Báo cáo vi phạm)
+│   ├── Chọn lý do báo cáo
+│   ├── Gửi mô tả
+│   └── → index.php (Thông báo gửi thành công)
+│
+├── 🔒👤 saved-pins.php (Pins đã lưu)
+│   └── Grid Pins đã lưu vào Boards
+│
+├── 🔒👤 search.php (Tìm kiếm)
+│   ├── Tìm theo từ khóa
+│   ├── Lọc theo: Danh mục, Người dùng, Thời gian
+│   └── Hiển thị kết quả
+│
+├── 🔒👤 explore.php (Khám phá)
+│   ├── Đề xuất theo sở thích
+│   ├── Xu hướng
+│   └── Danh mục nổi bật
+│
+└── 🔒 logout.php (Đăng xuất)
+    └── → index.php (Trở về trang chủ với vai trò Guest)
+
+
+ADMIN FLOW (Đăng nhập với quyền Admin)
+│
+├── 👮 admin/dashboard.php (Bảng điều khiển)
+│   ├── Thống kê tổng quan:
+│   │   ├── Số người dùng
+│   │   ├── Số Pins
+│   │   ├── Số Boards
+│   │   ├── Số báo cáo chờ xử lý
+│   │   └── Biểu đồ hoạt động
+│   ├── Cảnh báo
+│   └── Menu điều hướng nhanh
+│
+├── 👮 admin/users.php (Quản lý người dùng)
+│   ├── Danh sách tất cả người dùng
+│   ├── Tìm kiếm người dùng
+│   ├── Xem chi tiết user
+│   ├── Vô hiệu hóa tài khoản
+│   ├── Xóa tài khoản
+│   └── Đặt lại mật khẩu
+│
+├── 👮 admin/pins.php (Quản lý Pins)
+│   ├── Danh sách tất cả Pins
+│   ├── Lọc theo: Người dùng, Thời gian, Trạng thái
+│   ├── Xem chi tiết Pin
+│   ├── Xóa Pin vi phạm
+│   └── Khóa người dùng vi phạm
+│
+├── 👮 admin/boards.php (Quản lý Boards)
+│   ├── Danh sách tất cả Boards
+│   ├── Xem chi tiết Board
+│   └── Xóa Board vi phạm
+│
+├── 👮 admin/reports.php (Quản lý báo cáo)
+│   ├── Danh sách báo cáo chờ xử lý
+│   ├── Báo cáo đã xử lý
+│   ├── Xem chi tiết báo cáo:
+│   │   ├── Pin bị báo cáo
+│   │   ├── Người báo cáo
+│   │   ├── Lý do
+│   │   └── Bằng chứng
+│   ├── Xử lý báo cáo:
+│   │   ├── Xóa Pin
+│   │   ├── Cảnh cáo người dùng
+│   │   ├── Bỏ qua
+│   │   └── Khóa tài khoản
+│   └── Gửi thông báo kết quả
+│
+├── 👮 admin/categories.php (Quản lý danh mục)
+│   ├── Danh sách danh mục
+│   ├── Thêm danh mục mới
+│   ├── Chỉnh sửa danh mục
+│   ├── Xóa danh mục
+│   └── Sắp xếp thứ tự
+│
+├── 👮 admin/statistics.php (Thống kê hệ thống)
+│   ├── Biểu đồ:
+│   │   ├── Lượt truy cập theo ngày/tuần/tháng
+│   │   ├── Số lượng Pins/Boards theo thời gian
+│   │   ├── Người dùng mới
+│   │   └── Tương tác (Like, Comment, Follow)
+│   ├── Xuất báo cáo
+│   └── Tải xuống dữ liệu
+│
+├── 👮 admin/settings.php (Cài đặt hệ thống)
+│   ├── Cấu hình chung
+│   ├── Cấu hình email
+│   ├── Cấu hình upload
+│   ├── Bảo trì hệ thống
+│   └── Backup database
+│
+└── 🔒 logout.php (Đăng xuất)
+    └── → index.php
