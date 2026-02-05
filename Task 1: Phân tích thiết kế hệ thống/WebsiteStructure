@@ -1,0 +1,21 @@
+Pinterest Clone
+│
+├── Trang công khai (Guest)
+│   ├── Trang chủ (index.php)
+│   ├── Đăng nhập (login.php)
+│   ├── Đăng ký (register.php)
+│   ├── Tìm kiếm (search.php)
+│   └── Xem Pin chi tiết (pin-detail.php)
+│
+├── Trang người dùng (User)
+│   ├── Dashboard / Home Feed
+│   ├── Profile (profile.php)
+│   ├── Tạo Pin (create-pin.php)
+│   ├── Quản lý Boards (my-boards.php)
+│   ├── Board chi tiết (board-detail.php)
+│
+└── Trang quản trị (Admin)
+    ├── Dashboard
+    ├── Quản lý người dùng
+    ├── Quản lý Pins
+    └── Thống kê
