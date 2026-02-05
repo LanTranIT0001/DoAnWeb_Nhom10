@@ -1,0 +1,105 @@
+MÔ TẢ DỰ ÁN: MÔ PHỎNG WEBSITE MẠNG XÃ HỘI PINTEREST
+1. TỔNG QUAN DỰ ÁN
+1.1 Giới thiệu
+Dự án xây dựng một website mô phỏng mạng xã hội Pinterest - nền tảng chia sẻ hình ảnh và video theo dạng bảng ghim (pinboards). Trong đó, người dùng có thể tạo, lưu trữ, chia sẻ và khám phá nội dung hình ảnh theo chủ đề cá nhân.
+1.2 Mục tiêu dự án
+Phát triển hệ thống web đầy đủ chức năng mô phỏng Pinterest
+Áp dụng kiến thức lập trình web vào thực tế
+2. YÊU CẦU CHỨC NĂNG
+2.1 Quản lý người dùng
+Đăng ký tài khoản: Email, username, password
+Đăng nhập/Đăng xuất: Xác thực bảo mật
+Quản lý profile: Cập nhật thông tin cá nhân, ảnh đại diện
+Quên mật khẩu: Khôi phục mật khẩu qua email
+2.2 Quản lý nội dung (Pins)
+Tạo Pin: Upload hình ảnh/video, tiêu đề, mô tả, link nguồn
+Chỉnh sửa Pin: Cập nhật thông tin Pin
+Xóa Pin: Xóa Pin đã tạo
+Xem chi tiết Pin: Hiển thị đầy đủ thông tin
+Tìm kiếm Pin: Theo từ khóa, danh mục
+2.3 Quản lý bảng ghim (Boards)
+Tạo Board: Tên, mô tả, chế độ công khai/riêng tư
+Chỉnh sửa Board: Cập nhật thông tin
+Xóa Board: Xóa Board và Pins liên quan
+Thêm Pin vào Board: Ghim Pins vào Boards
+Xem Board: Hiển thị tất cả Pins trong Board
+2.4 Tương tác xã hội
+Theo dõi người dùng: Follow/Unfollow
+Thích Pin: Like/Unlike
+Bình luận: Comment, reply comment
+Chia sẻ Pin: Share đến Boards khác hoặc người dùng khác
+Báo cáo vi phạm: Báo cáo nội dung Pins vi phạm tiêu chuẩn cộng đồng
+2.5 Khám phá và tìm kiếm
+Trang chủ (Home Feed): Hiển thị Pins từ người dùng đang theo dõi, nếu chưa theo dõi ai thì hiển thị all Pins
+Tìm kiếm nâng cao: Theo từ khóa, danh mục, người dùng
+3. YÊU CẦU PHI CHỨC NĂNG
+3.1 Hiệu suất
+Thời gian tải trang < 3 giây
+Hỗ trợ nhiều người dùng đồng thời
+Tối ưu hóa hình ảnh tự động
+3.2 Bảo mật
+Mã hóa mật khẩu (password_hash - bcrypt)
+Bảo vệ CSRF, XSS, SQL Injection
+Sử dụng Prepared Statements
+Quản lý session an toàn
+3.3 Giao diện
+Responsive design với Bootstrap
+Giao diện thân thiện, dễ sử dụng
+Tối ưu hóa trải nghiệm người dùng
+4. VAI TRÒ NGƯỜI DÙNG
+4.1 Guest (Khách)
+Xem Pins công khai
+Đăng ký tài khoản
+Nhập email, username, password
+Xác thực qua email
+Tìm kiếm Pins theo danh mục hoặc từ khoá
+4.2 User (Người dùng thường)
+Quản lý tài khoản:
+Đăng nhập/ đăng xuất tài khoản
+Thay đổi mật khẩu (xác nhận qua email)
+Quản lý profile: cập nhật thông tin cá nhân, ảnh đại diện
+Tạo và quản lý nội dung 
+Quản lý nội dung Pin: Tạo Pin, Chỉnh sửa Pin, Xoá Pin, Xem chi tiết, Tìm kiếm Pin, Báo cáo Pin.
+Quản lý nội dung Board: Tạo Board, Chỉnh sửa Board, Xoá Board, Thêm Pin vào Board, Xem Board
+Tương tác xã hội
+Theo dõi người dùng
+Like/ Unlike Pin/Board.
+Chia sẻ Pin/Board
+Bình luận
+4.3 Admin (Quản trị viên)
+Quản lý người dùng: Xoá tài khoản người dùng
+Duyệt và xoá nội dung vi phạm
+Thống kê hệ thống:
+Lưu lượng người dùng
+Số lượng Pin/Board
+Số lượng danh mục
+5. THỰC THỂ CHÍNH VÀ MỐI QUAN HỆ 
+5.1 Các thực thể chính 
+User: id, username, email, password, avatar, bio, created_at
+Pin: id, user_id, title, description, image_url, link, created_at
+Board: id, user_id, name, description, privacy, created_at
+BoardPin: board_id, pin_id (relationship)
+Like: id, user_id, pin_id, created_at
+Comment: id, user_id, pin_id, content, parent_id, created_at
+Follow: follower_id, following_id, created_at
+Category: id, name, description
+PinCategory: pin_id, category_id
+5.2 Mối quan hệ quan trọng
+User (1) → (N) Pin
+User (1) → (N) Board
+Board (N) → (N) Pin (qua BoardPin)
+User (N) → (N) Pin (qua Like)
+User (1) → (N) Comment
+Pin (1) → (N) Comment
+Comment (1) → (N) Comment (reply)
+User (N) → (N) User (Follow)
+Pin (N) → (N) Category
+6. LUỒNG CÔNG VIỆC CHÍNH
+6.1 Đăng ký và đăng nhập
+Guest → Register → Verify Email → Login → User Dashboard
+6.2 Tạo và chia sẻ Pin
+User → Upload Image → Add Details → Select Board → Save Pin → Share
+6.3 Khám phá nội dung
+User → Home Feed → Like/Comment → Save to Board → Follow User
+	6.4 Báo cáo nội dung vi phạm
+User → Report Pin → Admin Accept → Delete Pin
