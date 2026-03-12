@@ -1,1 +1,51 @@
+project-root/
+│
+├──📂 app/
+│   ├── 📂Core/                      #Bộ khung chứa các lớp xử lý hệ thống dùng chung 
+│   ├── 📂Controllers/             # Xử lý logic nghiệp vụ và điều hướng
+│   │   ├── UserController.php   # đăng ký, đăng nhập, hồ sơ
+│   │   ├── PinController.php    # Tạo, cập nhật, xóa Pin
+│   │   ├── BoardController.php  # Quản lý bảng và các section
+│   │   ├── CommentController.php# Xử lý bình luận
+│   │   ├── LikeController.php   # Xử lý lượt thích
+│   │   ├── MessageController.php# Xử lý tin nhắn và hội thoại
+│   │   ├── CategoryController.php# Phân loại nội dung
+│   │   ├── FollowController.php # Theo dõi người dùng
+│   │   └── ReportController.php # Xử lý báo cáo vi phạm
+│   │
+│   ├──📂 Models/                  # Tương tác với Database (Dữ liệu)
+│   │   ├── User.php
+│   │   ├── Pin.php
+│   │   ├── Board.php
+│   │   ├── Category.php
+│   │   ├── Comment.php
+│   │   ├── Like.php
+│   │   ├── Conversation.php
+│   │   ├── Message.php
+│   │   ├── Follow.php
+│   │   └── Report.php
+│   │
+│   └── 📂Views/                   # Giao diện người dùng
+│       ├── 📂layouts/             # Header, Footer, Sidebar dùng chung
+│       ├── 📂auth/                # Giao diện Đăng nhập/Đăng ký
+│       ├── 📂users/               # Trang cá nhân, cài đặt
+│       ├── 📂pins/                # Chi tiết Pin, danh sách Pin
+│       ├── 📂boards/              # Chi tiết Board, tạo Board
+│       ├── 📂messages/            # Danh sách chat, khung chat
+│       ├── 📂components/            # Các mảnh nhỏ: card_pin.php, sidebar.php
+│       └── 📂admin/               # Giao diện quản lý (Reports,...)
+│
+├──📂 public/
+│   ├── index.php                # File khởi tạo hệ thống
+│   ├── .htaccess              # Cấu hình để mọi URL đề trỏ về index.php
+│   ├── 📂css/                     # Stylesheets
+│   ├── 📂js/                      # Javascripts
+│   └── 📂uploads/                 # Nơi lưu trữ hình ảnh Pins/Avatar
+│
+├── 📂config/
+│   ├── config.php
+│   └── database.php             # Kết nối DB
+│
+└──📂 routes/
+    └── web.php                  # Định nghĩa các đường dẫn URL
 
